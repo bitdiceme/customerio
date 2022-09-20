@@ -4,14 +4,21 @@ defmodule Customerio.Mixfile do
   def project do
     [
       app: :customerio,
-      version: "0.1.2",
-      elixir: "~> 1.4",
-      build_embedded: Mix.env == :prod,
-      start_permanent: Mix.env == :prod,
+      version: "0.2.2",
+      elixir: "~> 1.7",
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
       package: package(),
-      docs: docs()
+      docs: docs(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -22,19 +29,19 @@ defmodule Customerio.Mixfile do
     # Specify extra applications you'll use from Erlang/Elixir
     [
       extra_applications: [
-        :logger,
-        :httpoison
-      ],
+        :logger
+      ]
     ]
   end
 
   defp deps do
     [
-      {:httpoison, "~> 0.11"},
+      {:hackney, "~> 1.15"},
       {:ex_doc, "~> 0.0", only: :dev},
-      {:poison, ">= 2.0.0 and < 4.0.0"},
-      {:exvcr, "~> 0.8", only: :test},
-      {:inch_ex,"~> 0.5", only: :docs}
+      {:jason, "~> 1.1"},
+      {:exvcr, "~> 0.10", only: :test},
+      {:inch_ex, "~> 2.0", only: [:docs, :dev, :test]},
+      {:excoveralls, "~> 0.10", only: :test}
     ]
   end
 
@@ -50,7 +57,7 @@ defmodule Customerio.Mixfile do
       files: ["lib", "mix.exs", "README*"],
       maintainers: ["Dmitry Rubinshtein"],
       licenses: ["MIT"],
-      links: %{"Gihub"=>"https://github.com/virviil/customerio"}
+      links: %{"Gihub" => "https://github.com/virviil/customerio"}
     ]
   end
 

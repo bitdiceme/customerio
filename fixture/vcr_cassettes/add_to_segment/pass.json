@@ -1,11 +1,11 @@
 [
   {
     "request": {
-      "body": "{}",
+      "body": "{\"ids\":[1,2,3]}",
       "headers": {
         "Content-Type": "application/json"
       },
-      "method": "delete",
+      "method": "post",
       "options": {
         "basic_auth": [
           "",
@@ -13,21 +13,21 @@
         ]
       },
       "request_body": "",
-      "url": "https://track.customer.io/api/v1/customers/1"
+      "url": "https://track.customer.io/api/v1/segments/1/add_customers"
     },
     "response": {
       "binary": false,
-      "body": "{\n  \"meta\": {\n    \"error\": \"Unauthorized request\"\n  }\n}\n",
+      "body": "{}\n",
       "headers": {
+        "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0",
         "Content-Type": "application/json; charset=utf-8",
-        "Status": "401 Unauthorized",
-        "Www-Authenticate": "Basic realm=\"Customer.io edge event collection\"",
-        "Date": "Sat, 23 Feb 2019 08:00:19 GMT",
-        "Content-Length": "56",
+        "Status": "200 OK",
+        "Date": "Sat, 23 Feb 2019 08:12:41 GMT",
+        "Content-Length": "3",
         "Via": "1.1 google",
         "Alt-Svc": "clear"
       },
-      "status_code": 401,
+      "status_code": 200,
       "type": "ok"
     }
   }

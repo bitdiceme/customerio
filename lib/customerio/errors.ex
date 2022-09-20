@@ -1,15 +1,15 @@
 defmodule Customerio.Error do
-  defexception reason: "undefined error"
-
-  @type t :: %Customerio.Error{reason: any}
-  def message(%{reason: reason}), do: inspect reason
-end
-
-defmodule Customerio.Success do
-  @doc """
-  Test
+  @moduledoc """
+  Customer.IO API error exeption
   """
-  defstruct [:response]
+  defexception reason: "undefined error",
+               code: nil
 
-  @type t :: %Customerio.Success{response: %HTTPoison.Response{}}
+  @typedoc """
+  Customer.IO API error
+  """
+  @type t :: %Customerio.Error{reason: any, code: integer() | nil}
+
+  @doc nil
+  def message(%{reason: reason}), do: inspect(reason)
 end

@@ -1,25 +1,25 @@
 [
   {
     "request": {
-      "body": "{\"email\":\"test@example.com\"}",
+      "body": "{\"data\":{\"title\":\"Campaign Test\"}}",
       "headers": {
         "Content-Type": "application/json"
       },
-      "method": "put",
+      "method": "post",
       "options": {
         "basic_auth": "***"
       },
       "request_body": "",
-      "url": "https://track.customer.io/api/v1/customers/1"
+      "url": "https://api.customer.io/v1/api/campaigns/7/triggers"
     },
     "response": {
       "binary": false,
-      "body": "{}\n",
+      "body": "{\"id\":47}",
       "headers": {
         "Cache-Control": "no-cache, no-store, must-revalidate, max-age=0",
         "Content-Type": "application/json; charset=utf-8",
         "Status": "200 OK",
-        "Date": "Sat, 23 Feb 2019 07:54:59 GMT",
+        "Date": "Sat, 03 Jun 2019 09:00:01 GMT",
         "Content-Length": "3",
         "Via": "1.1 google",
         "Alt-Svc": "clear"
