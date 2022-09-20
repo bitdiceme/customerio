@@ -13,7 +13,7 @@
         ]
       },
       "request_body": "",
-      "url": "https://api.customer.io/v1/api/campaigns/8/triggers"
+      "url": "https://api.customer.io/v1/campaigns/8/triggers"
     },
     "response": {
       "binary": false,

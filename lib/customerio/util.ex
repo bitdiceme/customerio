@@ -2,11 +2,10 @@ defmodule Customerio.Util do
   @moduledoc false
   @type value :: number | String.t() | atom()
 
-  @behavioral_base_route "https://track.customer.io/api/v1/"
-
-  @behavioral_naked_route "https://track.customer.io/"
-
-  @api_base_route "https://api.customer.io/v1/api"
+  defp behavioral_naked_route, do: Application.get_env(:customerio, :behavioral_host, "https://track.customer.io")
+  defp behavioral_route, do: Application.get_env(:customerio, :behavioral_route, "/api/v1/")
+  defp behavioral_base_route, do: URI.merge(behavioral_naked_route(), behavioral_route()) |> URI.to_string
+  defp api_base_route, do: Application.get_env(:customerio, :api_base_route, "https://api.customer.io/v1")
 
   defp get_username, do: Application.get_env(:customerio, :site_id)
   defp get_password, do: Application.get_env(:customerio, :api_key)
@@ -35,7 +34,7 @@ defmodule Customerio.Util do
           opts :: Keyword.t()
         ) :: {:ok, String.t()} | {:error, Customerio.Error.t()}
   def send_behavioral_request(method, route, data_map, opts \\ []) do
-    send_request(method, @behavioral_base_route <> route, data_map, opts)
+    send_request(method, behavioral_base_route() <> route, data_map, opts)
   end
 
   @doc """
@@ -49,7 +48,7 @@ defmodule Customerio.Util do
           opts :: Keyword.t()
         ) :: {:ok, String.t()} | {:error, Customerio.Error.t()}
   def send_behavioral_naked_request(method, route, data_map, opts \\ []) do
-    send_request(method, @behavioral_naked_route <> route, data_map, opts)
+    send_request(method, behavioral_naked_route() <> route, data_map, opts)
   end
 
   @doc """
@@ -63,7 +62,7 @@ defmodule Customerio.Util do
           opts :: Keyword.t()
         ) :: {:ok, String.t()} | {:error, Customerio.Error.t()}
   def send_api_request(method, route, data_map, opts \\ []) do
-    send_request(method, @api_base_route <> route, data_map, opts)
+    send_request(method, api_base_route() <> route, data_map, opts)
   end
 
   @spec send_request(
